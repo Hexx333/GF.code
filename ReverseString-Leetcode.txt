@@ -28,6 +28,7 @@ class Solution {
         s[b]=temp;
             ++a;
             --b;
+            exit
         }
     }
 }
