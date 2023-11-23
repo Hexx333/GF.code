@@ -1,0 +1,116 @@
+name: Go
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: [ '1.19', '1.20', '1.21.x' ]
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Go ${{ matrix.go-version }}
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ matrix.go-version }}
+      # You can test your matrix by printing the current Go version
+      - name: Display Go version
+        run: go version
+Using a specific Go version
+You can configure your job to use a specific version of Go, such as 1.20.8. Alternatively, you can use semantic version syntax to get the latest minor release. This example uses the latest patch release of Go 1.21:
+
+YAML
+      - name: Setup Go 1.21.x
+        uses: actions/setup-go@v4
+        with:
+          # Semantic version range syntax or exact version of Go
+          go-version: '1.21.x'
+Installing dependencies
+You can use go get to install dependencies:
+
+YAML
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21.x'
+      - name: Install dependencies
+        run: |
+          go get .
+          go get example.com/octo-examplemodule
+          go get example.com/octo-examplemodule@v1.3.4
+Caching dependencies
+You can cache and restore dependencies using the setup-go action. By default, caching is enabled when using the setup-go action.
+
+The setup-go action searches for the dependency file, go.sum, in the repository root and uses the hash of the dependency file as a part of the cache key.
+
+You can use the cache-dependency-path parameter for cases when multiple dependency files are used, or when they are located in different subdirectories.
+
+YAML
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.17'
+          cache-dependency-path: subdir/go.sum
+If you have a custom requirement or need finer controls for caching, you can use the cache action. For more information, see "Caching dependencies to speed up workflows."
+
+Building and testing your code
+You can use the same commands that you use locally to build and test your code. This example workflow demonstrates how to use go build and go test in a job:
+
+YAML
+name: Go
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21.x'
+      - name: Install dependencies
+        run: go get .
+      - name: Build
+        run: go build -v ./...
+      - name: Test with the Go CLI
+        run: go test
+Packaging workflow data as artifacts
+After a workflow completes, you can upload the resulting artifacts for analysis. For example, you may need to save log files, core dumps, test results, or screenshots. The following example demonstrates how you can use the upload-artifact action to upload test results.
+
+For more information, see "Storing workflow data as artifacts."
+
+YAML
+name: Upload Go test results
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: [ '1.19', '1.20', '1.21.x' ]
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ matrix.go-version }}
+      - name: Install dependencies
+        run: go get .
+      - name: Test with Go
+        run: go test -json > TestResults-${{ matrix.go-version }}.json
+      - name: Upload Go test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: Go-results-${{ matrix.go-version }}
+          path: TestResults-${{ matrix.go-version }}.json
