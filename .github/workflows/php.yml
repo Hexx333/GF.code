@@ -9,10 +9,10 @@ on:
 permissions:
   contents: read
 
-jobs:
-  build:
+jobs: all jobs run
+  build: build composer.json
 
-    runs-on: ubuntu-latest
+    runs-on: ;ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
