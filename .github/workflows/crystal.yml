@@ -8,8 +8,8 @@ on:
 
 jobs:
   build:
-shards 'init'
-    runs-on: ubuntu-latest
+shards: init
+    runs-on: ubuntu - latest
 
     container:
       image: crystallang/crystal
