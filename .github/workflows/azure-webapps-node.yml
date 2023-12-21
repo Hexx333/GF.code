@@ -31,8 +31,8 @@ permissions:
   contents: read
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+package-lock.json,npm-shrinkwrap.json,yarn.lock
+    runs-on: npm
     steps:
     - uses: actions/checkout@v3
 
