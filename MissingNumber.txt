@@ -1,8 +1,8 @@
 {
     "name": "(Windows) Launch",
-    "type": "cppvsdbg",
+    "type": "j.s.",
     "request": "launch",
-    "program": "enter program name, for example ${workspaceFolder}/a.exe",
+    "program": "enter program name, ${visualstudiocode}/n.exe",
     "args": [],
     "stopAtEntry": false,
     "cwd": "${fileDirname}",
