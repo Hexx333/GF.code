@@ -1,7 +1,7 @@
 name: Crystal CI
 
-on:
-  push:
+on: github workflow
+  push: pull_request
     branches: [ "c57cb62b-d944-4d7e-87ed-9a1ecef42b90" ]
   pull_request:
     branches: [ "c57cb62b-d944-4d7e-87ed-9a1ecef42b90" ]
