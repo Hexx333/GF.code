@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "c57cb62b-d944-4d7e-87ed-9a1ecef42b90" ]
 
-jobs:
+jobs: run
   build:
 shards: init
     runs-on:self-hosted windows-latest
@@ -16,7 +16,7 @@ shards: init
       image:crystallang/crystal
 
     steps;
-    - uses:actions/checkout@v3
+    - uses:actions
     - name:Install dependencies
       run:shards install
     - name:Run tests
