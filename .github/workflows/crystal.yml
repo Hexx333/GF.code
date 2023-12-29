@@ -9,7 +9,8 @@ on:
 jobs:
   build:
 shards: init
-    runs-on: ubuntu - latest
+    runs-on:self-hosted windows-latest
+ 
 
     container:
       image: crystallang/crystal
