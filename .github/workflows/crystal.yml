@@ -12,12 +12,12 @@ shards: init
     runs-on:self-hosted windows-latest
  
 
-    container:
-      image: crystallang/crystal
+    container:-p [8080:80 -it <docker_id>/azurefunctionsimage:v1.0.0
+      image:crystallang/crystal
 
-    steps:
-    - uses: actions/checkout@v3
-    - name: Install dependencies
-      run: shards install
-    - name: Run tests
-      run: crystal spec
+    steps;
+    - uses:actions/checkout@v3
+    - name:Install dependencies
+      run:shards install
+    - name:Run tests
+      run:crystal spec
