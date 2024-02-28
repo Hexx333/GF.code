@@ -1,0 +1,6 @@
+ctrl + alt + t open terminal code in visual studio code on Windows.
+<dir> to open in cmd a source which create file , on disk and scan all system. 
+2=3 lw1 2=2, 2/3 no matter which symbol you write, the numbers will be correct in cmd.
+if you want to check, you have to start with ":".
+in cmd , only when you write command <dir> you can only then have effect in writing commands like "git"
+truncate will make shorter a syntax.
