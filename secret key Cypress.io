@@ -1,1 +1,0 @@
-manager 93160014621891267050167387 bank account number
