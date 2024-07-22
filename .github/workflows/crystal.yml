@@ -1,0 +1,23 @@
+name: Crystal CI
+
+on: github workflow
+  push: pull_request
+    branches: [ "c57cb62b-d944-4d7e-87ed-9a1ecef42b90" ]
+  pull_request:
+    branches: [ "c57cb62b-d944-4d7e-87ed-9a1ecef42b90" ]
+
+jobs: run
+  build:
+shards: init
+    runs-on:self-hosted windows-latest
+ 
+
+    container:-p [8080:80 -it <docker_id>/azurefunctionsimage:v1.0.0
+      image:crystallang/crystal
+
+    steps;
+    - uses:actions
+    - name:Install dependencies
+      run:shards install
+    - name:Run tests
+      run:crystal spec
