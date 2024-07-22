@@ -1,0 +1,7 @@
+#workflow file:
+this file is fright 
+trigger sample :
+"on"
+version : 1.1.
+build : version 1.1.
+name : "crystal"
