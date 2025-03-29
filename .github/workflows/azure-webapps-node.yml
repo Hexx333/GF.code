@@ -17,7 +17,30 @@
 # For more information on the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # For more samples to get started with GitHub Action workflows to deploy to Azure: https://github.com/Azure/actions-workflow-samples
 
-on:
+on:class Car {
+    constructor(make, model, topSpeed) {
+        this.make = make;
+        this.model = model;
+        this.speed = 0; // Initial speed is 0
+        this.topSpeed = topSpeed; // Top speed of the car
+    }
+
+    accelerate(speed) {
+        if (speed > this.topSpeed) {
+            console.log(`Cannot exceed top speed of ${this.topSpeed} mph.`);
+            this.speed = this.topSpeed;
+        } else {
+            this.speed = speed;
+        }
+        console.log(`The car is now going at ${this.speed} mph.`);
+    }
+}
+
+// Create a new car object with a top speed of 260 mph
+const myCar = new Car('Tesla', 'Model S', 260);
+
+// Accelerate the car to 260 mph
+myCar.accelerate(260);
   push:
     branches: [ "c57cb62b-d944-4d7e-87ed-9a1ecef42b90" ]
   workflow_dispatch:
